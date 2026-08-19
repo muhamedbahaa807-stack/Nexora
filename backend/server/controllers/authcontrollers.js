@@ -158,7 +158,7 @@ export const signin = async (req, res) => {
   const refreshToken = generateRefreshToken(user);
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
-    secure: true,
+    secure: false,
     sameSite: 'lax',
     maxAge: 60000 * 60 * 24 * 30,
   });
@@ -200,6 +200,7 @@ export const refresh = async (req, res) => {
 
   return res.status(200).json({
     accessToken,
+    user,
   });
 };
 
